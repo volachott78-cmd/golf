@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khao Yai Golf Expo 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green:#062f22;
+      --green-2:#0b4a35;
+      --green-3:#0f5c42;
+      --gold:#c8a75d;
+      --gold-2:#e6c46a;
+      --white:#ffffff;
+      --cream:#f7f1e4;
+      --muted:#d8d1bf;
+      --text:#16231d;
+      --red:#d63a2f;
+      --yellow:#f2b93b;
+      --available:#4caf50;
+      --shadow:0 24px 60px rgba(0,0,0,.22);
+      --radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans Thai',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    .container{width:min(1180px,92%);margin:auto}
+    .serif{font-family:'Playfair Display',serif}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:10px;font-weight:800;font-size:14px;transition:.35s ease;cursor:pointer;border:1px solid rgba(200,167,93,.5)}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),#9f792a);color:white;box-shadow:0 12px 26px rgba(200,167,93,.25)}
+    .btn-outline{background:rgba(6,47,34,.45);color:white;border-color:rgba(255,255,255,.35)}
+    .btn:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.22)}
+
+    header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(4,34,25,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(200,167,93,.25)}
+    nav{height:78px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:12px;color:white;font-weight:900;letter-spacing:.6px}
+    .logo-mark{width:52px;height:40px;border:1px solid var(--gold);border-radius:10px;display:grid;place-items:center;color:var(--gold);font-size:24px}
+    .logo span{display:block;font-size:12px;color:var(--gold);letter-spacing:2px}
+    .menu{display:flex;gap:24px;color:white;font-size:13px;font-weight:700;align-items:center}
+    .menu a{opacity:.86;transition:.3s}.menu a:hover{color:var(--gold);opacity:1}
+    .hamburger{display:none;color:white;font-size:30px}
+
+    .hero{min-height:100vh;position:relative;color:white;display:flex;align-items:center;padding-top:80px;overflow:hidden;background:var(--green)}
+    .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.5s ease;transform:scale(1.04);animation:kenburns 12s linear infinite;background-size:cover;background-position:center}
+    .slide.active{opacity:1}
+    .slide:nth-child(1){background-image:linear-gradient(90deg,rgba(3,28,20,.9),rgba(3,28,20,.45),rgba(3,28,20,.2)),url('https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1800&q=80')}
+    .slide:nth-child(2){background-image:linear-gradient(90deg,rgba(3,28,20,.92),rgba(3,28,20,.48),rgba(3,28,20,.18)),url('https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&w=1800&q=80')}
+    .slide:nth-child(3){background-image:linear-gradient(90deg,rgba(3,28,20,.92),rgba(3,28,20,.55),rgba(3,28,20,.24)),url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1800&q=80')}
+    @keyframes kenburns{from{transform:scale(1.03)}to{transform:scale(1.12)}}
+    .hero-content{position:relative;z-index:2;max-width:820px;padding:80px 0 50px}
+    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border:1px solid rgba(200,167,93,.55);border-radius:999px;background:rgba(6,47,34,.55);color:var(--gold-2);font-weight:800;margin-bottom:24px}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(54px,8vw,112px);line-height:.92;letter-spacing:2px;text-transform:uppercase;text-shadow:0 8px 28px rgba(0,0,0,.35)}
+    h1 span{color:var(--gold)}
+    .hero p{font-size:clamp(18px,2vw,26px);margin:22px 0 22px;font-weight:700;max-width:720px}
+    .meta{display:flex;gap:24px;flex-wrap:wrap;margin:26px 0;color:#fff;font-weight:700}.meta div{display:flex;gap:9px;align-items:center}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:26px}
+    .hero-dots{position:absolute;right:40px;bottom:45px;z-index:4;display:flex;gap:10px}.dot{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer}.dot.active{background:var(--gold);transform:scale(1.25)}
+
+    .stats{position:relative;margin-top:-70px;z-index:5}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);background:linear-gradient(145deg,#043123,#0b4a35);border:1px solid rgba(200,167,93,.38);box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden}.stat{padding:30px;text-align:center;color:white;border-right:1px solid rgba(200,167,93,.25)}.stat:last-child{border-right:none}.stat .icon{font-size:32px;color:var(--gold)}.stat strong{display:block;color:var(--gold);font-size:44px;line-height:1;margin-top:10px}.stat span{font-size:13px;font-weight:800;letter-spacing:.7px}
+
+    section{padding:82px 0}.section-title{text-align:center;margin-bottom:42px}.section-title small{color:var(--gold);font-weight:900;letter-spacing:2px;text-transform:uppercase}.section-title h2{font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,56px);color:var(--green);margin-top:8px}.section-title p{max-width:680px;margin:12px auto 0;color:#59625d}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.event-card{min-height:330px;border-radius:22px;overflow:hidden;position:relative;color:white;box-shadow:0 18px 40px rgba(0,0,0,.18);transition:.4s ease}.event-card:hover{transform:translateY(-8px)}.event-card:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(2,35,25,.9));z-index:1}.event-card img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.event-info{position:absolute;z-index:2;left:28px;right:28px;bottom:28px}.date-tag{display:inline-block;background:var(--green);color:white;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:900;margin-bottom:14px}.event-info h3{font-size:28px;line-height:1.14;color:var(--gold-2)}.event-info ul{margin:12px 0 18px 18px;line-height:1.8}
+
+    .why{background:linear-gradient(135deg,var(--green),#042018);color:white}.why .section-title h2{color:white}.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.benefit{padding:26px;border:1px solid rgba(200,167,93,.25);border-radius:18px;background:rgba(255,255,255,.04);transition:.35s}.benefit:hover{background:rgba(200,167,93,.1);transform:translateY(-5px)}.benefit b{display:block;color:var(--gold);margin:12px 0 8px}.benefit .icon{font-size:30px}
+
+    .packages{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.package{background:white;border:1px solid #ded4bc;border-radius:22px;padding:30px;box-shadow:0 14px 35px rgba(0,0,0,.08);transition:.35s}.package:hover{transform:translateY(-7px)}.package.featured{background:linear-gradient(180deg,#fff8e8,#f4dfad);border-color:var(--gold);position:relative}.package.featured:before{content:'MOST POPULAR';position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:white;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:900}.price{font-size:34px;font-weight:900;color:var(--green);margin:10px 0}.package h3{font-size:22px}.package ul{margin:18px 0 24px 18px;line-height:1.9;color:#46504a}.package .btn{width:100%}
+
+    .booth-section{background:#f0eadc}.booth-wrap{display:grid;grid-template-columns:1.4fr .8fr;gap:24px;align-items:start}.map-card,.booth-detail{background:var(--green);border-radius:24px;padding:22px;box-shadow:var(--shadow);color:white}.legend{display:flex;gap:14px;margin-bottom:18px;font-size:13px;font-weight:800}.legend span{display:flex;align-items:center;gap:8px}.sq{width:14px;height:14px;border-radius:4px}.available{background:var(--available)}.reserved{background:var(--yellow)}.sold{background:var(--red)}.floor{background:#faf7ee;color:#222;border-radius:14px;padding:22px;min-height:540px;position:relative;overflow:auto}.stage{margin:0 auto 24px;width:230px;text-align:center;border:2px solid #777;padding:18px;background:#eee0c8;font-weight:900}.booth-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:10px}.booth{aspect-ratio:1.2/1;border:none;border-radius:6px;color:white;font-weight:900;cursor:pointer;transition:.25s;box-shadow:inset 0 -2px 0 rgba(0,0,0,.18)}.booth:hover{transform:scale(1.1);z-index:2}.booth.status-available{background:var(--available);animation:pulse 2.8s infinite}.booth.status-reserved{background:var(--yellow);color:#3a2b00}.booth.status-sold{background:var(--red)}@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(76,175,80,.45)}50%{box-shadow:0 0 0 8px rgba(76,175,80,0)}}.walkway{text-align:center;margin:22px 0;font-weight:900;color:#333}.areas{display:flex;justify-content:space-between;margin-top:22px}.area{border:1px solid #777;padding:12px 18px;background:#eee0c8;font-weight:800;font-size:12px}.booth-detail{position:sticky;top:100px}.booth-detail-inner{background:white;color:#16231d;border-radius:18px;padding:24px}.booth-detail h3{font-size:42px;color:var(--green)}.booth-visual{height:210px;border-radius:16px;background:linear-gradient(135deg,#f5f5f5,#d6d6d6);display:grid;place-items:center;margin:18px 0;color:#50605a;font-weight:900;border:1px solid #ddd}.status-line{display:flex;align-items:center;gap:10px;color:var(--available);font-weight:900;margin:12px 0}.detail-row{margin:14px 0}.detail-row small{display:block;color:#66706b;font-weight:800}.detail-row b{font-size:18px}.booth-detail .btn{width:100%;margin-top:10px}
+
+    .schedule-contact{background:linear-gradient(135deg,#052d21,#0a4d37);color:white}.sc-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}.schedule-box,.contact-box{border:1px solid rgba(200,167,93,.28);border-radius:22px;padding:28px;background:rgba(255,255,255,.04)}.timeline{display:grid;grid-template-columns:1fr 1fr;gap:22px}.day h4{color:var(--gold);font-size:20px;margin-bottom:12px}.time-row{display:grid;grid-template-columns:70px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1)}.contact-box h3{font-family:'Playfair Display',serif;font-size:34px;color:var(--gold);margin-bottom:20px}.contact-item{margin:16px 0;font-size:20px;font-weight:800}.form{margin-top:20px;display:grid;gap:12px}.form input,.form select,.form textarea{width:100%;padding:14px;border-radius:12px;border:1px solid rgba(200,167,93,.35);background:rgba(255,255,255,.95);font-family:inherit}.form textarea{min-height:90px}.form .btn{border:none}
+
+    footer{background:#031b14;color:white;padding:32px 0}.footer-grid{display:flex;justify-content:space-between;gap:20px;align-items:center}.marquee{overflow:hidden;border-top:1px solid rgba(200,167,93,.25);border-bottom:1px solid rgba(200,167,93,.25);background:#06281d;color:var(--gold);font-weight:900}.marquee-track{display:flex;gap:50px;padding:14px 0;white-space:nowrap;animation:marquee 22s linear infinite}.marquee-track span{min-width:max-content}@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    .reveal{opacity:0;transform:translateY(28px);transition:1s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    .bottom-nav{display:none}
+
+    @media(max-width:900px){
+      .menu{display:none}.hamburger{display:block}nav{height:68px}.hero{min-height:880px}.hero-content{padding-top:48px}.stats{margin-top:-48px}.stats-grid{grid-template-columns:repeat(4,1fr)}.stat{padding:20px 8px}.stat strong{font-size:30px}.stat span{font-size:10px}.cards,.packages,.booth-wrap,.sc-grid,.timeline{grid-template-columns:1fr}.benefits{grid-template-columns:repeat(2,1fr)}.booth-detail{position:relative;top:auto}.floor{min-height:480px}.booth-grid{grid-template-columns:repeat(5,1fr)}.hero-actions .btn{width:100%}.footer-grid{flex-direction:column;text-align:center}.bottom-nav{position:fixed;left:0;right:0;bottom:0;background:#062f22;border-top:1px solid rgba(200,167,93,.3);display:grid;grid-template-columns:repeat(5,1fr);z-index:60}.bottom-nav a{color:white;text-align:center;padding:10px 4px;font-size:10px}.bottom-nav b{display:block;font-size:18px;color:var(--gold)}body{padding-bottom:60px}
+    }
+    @media(max-width:560px){h1{font-size:48px}.hero p{font-size:17px}.meta{font-size:13px}.benefits{grid-template-columns:1fr}.section-title h2{font-size:34px}.event-info h3{font-size:22px}.package{min-width:84vw}.packages{display:flex;overflow-x:auto;padding-bottom:18px;scroll-snap-type:x mandatory}.package{scroll-snap-align:center}.hero-dots{right:24px;bottom:25px}.logo strong{font-size:13px}.logo-mark{width:44px;height:34px}.container{width:90%}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="#home">
+          <div class="logo-mark">⌁</div>
+          <strong>KHAO YAI<br><span>GOLF EXPO 2026</span></strong>
+        </a>
+        <div class="menu">
+          <a href="#home">HOME</a><a href="#about">ABOUT</a><a href="#tournament">TOURNAMENT</a><a href="#exhibition">EXHIBITION</a><a href="#sponsor">SPONSOR</a><a href="#registration">REGISTRATION</a><a href="#contact">CONTACT</a>
+          <a class="btn btn-primary" href="#registration">REGISTER NOW</a>
+        </div>
+        <div class="hamburger">☰</div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home" class="hero">
+    <div class="slide active"></div><div class="slide"></div><div class="slide"></div>
+    <div class="container hero-content reveal">
+      <div class="badge">Premium Golf Business & Networking Platform</div>
+      <h1>KHAO YAI<br><span>GOLF EXPO 2026</span></h1>
+      <p>Thailand's Premier Golf Business & Networking Platform for golfers, exhibitors and sponsors.</p>
+      <div class="meta">
+        <div>📅 4 - 5 มิถุนายน 2569</div>
+        <div>📍 Toscana Valley Country Club, Khao Yai</div>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#sponsor">Become Sponsor</a>
+        <a class="btn btn-outline" href="#exhibition">Reserve Booth</a>
+        <a class="btn btn-outline" href="#tournament">Join Tournament</a>
+      </div>
+    </div>
+    <div class="hero-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+  </main>
+
+  <section class="stats reveal" id="about">
+    <div class="container stats-grid">
+      <div class="stat"><div class="icon">🏌️</div><strong data-count="300">0</strong><span>GOLFERS</span></div>
+      <div class="stat"><div class="icon">🏢</div><strong data-count="50">0</strong><span>EXHIBITION BOOTHS</span></div>
+      <div class="stat"><div class="icon">🏆</div><strong data-count="2">0</strong><span>GOLF TOURNAMENTS</span></div>
+      <div class="stat"><div class="icon">🤝</div><strong data-count="10">0</strong><span>SPONSORS</span></div>
+    </div>
+  </section>
+
+  <section id="tournament">
+    <div class="container">
+      <div class="section-title reveal"><small>Featured Events</small><h2>2 Premier Golf Tournaments</h2><p>การแข่งขันกอล์ฟและกิจกรรมสร้างเครือข่ายสำหรับนักธุรกิจ ผู้บริหาร และผู้สนับสนุน</p></div>
+      <div class="cards">
+        <article class="event-card reveal">
+          <img src="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1200&q=80" alt="Amazing Khao Yai Elite Championship">
+          <div class="event-info"><span class="date-tag">4 JUNE 2026</span><h3>Amazing Khao Yai<br>Elite Championship 2026</h3><ul><li>150 Players</li><li>1 Day Tournament</li><li>Registration Fee 2,000 THB</li></ul><a class="btn btn-outline" href="#registration">View Details</a></div>
+        </article>
+        <article class="event-card reveal">
+          <img src="https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?auto=format&fit=crop&w=1200&q=80" alt="Nakhon Kaen Sabaidee Vientiane">
+          <div class="event-info"><span class="date-tag">5 JUNE 2026</span><h3>Nakhon Kaen<br>Sabaidee Vientiane 2026</h3><ul><li>150 Players</li><li>Networking Golf</li><li>Registration Fee 2,000 THB</li></ul><a class="btn btn-outline" href="#registration">View Details</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="why reveal">
+    <div class="container">
+      <div class="section-title"><small>Why Sponsor & Exhibit?</small><h2>Connect Your Brand With Premium Golf Community</h2></div>
+      <div class="benefits">
+        <div class="benefit"><div class="icon">📣</div><b>Brand Exposure</b><p>เข้าถึงนักกอล์ฟ นักธุรกิจ และผู้บริหารระดับสูง</p></div>
+        <div class="benefit"><div class="icon">🤝</div><b>Business Networking</b><p>สร้างโอกาสทางธุรกิจและพันธมิตรใหม่</p></div>
+        <div class="benefit"><div class="icon">🛒</div><b>Product Showcase</b><p>นำเสนอสินค้าและบริการต่อกลุ่มเป้าหมายโดยตรง</p></div>
+        <div class="benefit"><div class="icon">🏰</div><b>Premium Location</b><p>จัดงาน ณ Toscana Valley Country Club, Khao Yai</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sponsor">
+    <div class="container">
+      <div class="section-title reveal"><small>Sponsor Packages</small><h2>Choose Your Sponsorship Tier</h2></div>
+      <div class="packages">
+        <div class="package reveal"><h3>Silver Sponsor</h3><div class="price">10,000 THB</div><ul><li>Logo on Backdrop</li><li>Logo on Website</li><li>Social Media Mention</li><li>Certificate</li></ul><a class="btn btn-outline" style="background:var(--green)" href="#registration">Select Package</a></div>
+        <div class="package featured reveal"><h3>Gold Sponsor</h3><div class="price">15,000 THB</div><ul><li>Logo on Backdrop</li><li>Logo on Website</li><li>Social Media Promotion</li><li>Premium Visibility</li></ul><a class="btn btn-primary" href="#registration">Select Package</a></div>
+        <div class="package reveal"><h3>Platinum Sponsor</h3><div class="price">20,000 THB</div><ul><li>Premium Logo Placement</li><li>Website Exposure</li><li>Social Media Promotion</li><li>Exclusive Interview</li></ul><a class="btn btn-outline" style="background:var(--green)" href="#registration">Select Package</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="booth-section" id="exhibition">
+    <div class="container">
+      <div class="section-title reveal"><small>Interactive Booth Map</small><h2>Reserve Exhibition Booth</h2><p>คลิกที่บูธเพื่อดูข้อมูล ขนาด ราคา สถานะ และส่งคำขอจองออนไลน์</p></div>
+      <div class="booth-wrap">
+        <div class="map-card reveal">
+          <div class="legend"><span><i class="sq available"></i>Available</span><span><i class="sq reserved"></i>Reserved</span><span><i class="sq sold"></i>Sold</span></div>
+          <div class="floor">
+            <div class="stage">STAGE</div>
+            <div class="booth-grid" id="boothGrid"></div>
+            <div class="walkway">MAIN WALKWAY</div>
+            <div class="areas"><div class="area">FOOD & BEVERAGE</div><div class="area">ENTRANCE ↑</div><div class="area">NETWORKING AREA</div></div>
+          </div>
+        </div>
+        <aside class="booth-detail reveal">
+          <div class="booth-detail-inner">
+            <h3 id="boothNo">A01</h3>
+            <p><b>STANDARD BOOTH</b><br>3m x 3m</p>
+            <div class="status-line"><i class="sq available" id="statusDot"></i><span id="statusText">AVAILABLE</span></div>
+            <div class="booth-visual">COMPANY BOOTH PREVIEW</div>
+            <div class="detail-row"><small>PRICE</small><b>20,000 THB</b></div>
+            <div class="detail-row"><small>LOCATION</small><b id="zoneText">Zone A</b></div>
+            <a class="btn btn-primary" href="#registration">Reserve This Booth</a>
+            <button class="btn btn-outline" style="width:100%;background:var(--green);margin-top:10px" onclick="alert('Booth info preview')">View Booth Info</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="schedule-contact" id="registration">
+    <div class="container sc-grid">
+      <div class="schedule-box reveal">
+        <h2 class="serif" style="color:var(--gold);margin-bottom:22px">Event Schedule Overview</h2>
+        <div class="timeline">
+          <div class="day"><h4>4 June 2026</h4><div class="time-row"><b>06:30</b><span>Registration</span></div><div class="time-row"><b>07:30</b><span>Opening Ceremony</span></div><div class="time-row"><b>08:00</b><span>Shotgun Start</span></div><div class="time-row"><b>12:30</b><span>Lunch</span></div><div class="time-row"><b>17:00</b><span>Award Ceremony</span></div></div>
+          <div class="day"><h4>5 June 2026</h4><div class="time-row"><b>06:30</b><span>Registration</span></div><div class="time-row"><b>07:30</b><span>Networking Golf</span></div><div class="time-row"><b>12:30</b><span>Lunch</span></div><div class="time-row"><b>13:30</b><span>Business Matching</span></div><div class="time-row"><b>15:30</b><span>Lucky Draw</span></div><div class="time-row"><b>16:30</b><span>Closing Ceremony</span></div></div>
+        </div>
+      </div>
+      <div class="contact-box reveal" id="contact">
+        <h3>Register / Contact Us</h3>
+        <p>คุณเทพวรรณ เตรียมไทสง</p>
+        <div class="contact-item">☎ 083-453-9696</div>
+        <form class="form" onsubmit="event.preventDefault(); alert('ส่งข้อมูลเรียบร้อย ทีมงานจะติดต่อกลับเร็ว ๆ นี้');">
+          <select required><option value="">ประเภทลงทะเบียน</option><option>Golfer</option><option>Sponsor</option><option>Exhibitor</option><option>Visitor</option></select>
+          <input required placeholder="ชื่อ-นามสกุล">
+          <input placeholder="บริษัท">
+          <input placeholder="ตำแหน่ง">
+          <input required placeholder="เบอร์โทร">
+          <input type="email" placeholder="Email">
+          <input placeholder="Line ID">
+          <input type="file" title="แนบสลิปโอนเงิน">
+          <textarea placeholder="รายละเอียดเพิ่มเติม เช่น สนใจแพ็กเกจ / เลขบูธ / การแข่งขัน"></textarea>
+          <button class="btn btn-primary">Submit Registration</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee"><div class="marquee-track"><span>MICE SOLUTION</span><span>AMAZING THAILAND</span><span>TOSCANA VALLEY</span><span>GOLF PARTNERS</span><span>OFFICIAL SPONSORS</span><span>MICE SOLUTION</span><span>AMAZING THAILAND</span><span>TOSCANA VALLEY</span><span>GOLF PARTNERS</span><span>OFFICIAL SPONSORS</span></div></div>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="logo"><div class="logo-mark">⌁</div><strong>KHAO YAI<br><span>GOLF EXPO 2026</span></strong></div>
+      <p>Organized by MICE Solution (Thailand)</p>
+      <p>© 2026 Khao Yai Golf Expo. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <div class="bottom-nav"><a href="#home"><b>⌂</b>Home</a><a href="#tournament"><b>🏆</b>Tournament</a><a href="#exhibition"><b>🏢</b>Booth</a><a href="#sponsor"><b>💎</b>Sponsor</a><a href="#contact"><b>☎</b>Contact</a></div>
+
+  <script>
+    const slides=[...document.querySelectorAll('.slide')];
+    const dots=[...document.querySelectorAll('.dot')];
+    let slideIndex=0;
+    function showSlide(i){slides.forEach(s=>s.classList.remove('active'));dots.forEach(d=>d.classList.remove('active'));slides[i].classList.add('active');dots[i].classList.add('active')}
+    dots.forEach((dot,i)=>dot.addEventListener('click',()=>{slideIndex=i;showSlide(i)}));
+    setInterval(()=>{slideIndex=(slideIndex+1)%slides.length;showSlide(slideIndex)},5200);
+
+    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:.16});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    let counted=false;
+    const statsObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting&&!counted){counted=true;document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count;let current=0;const step=Math.max(1,Math.ceil(target/60));const timer=setInterval(()=>{current+=step;if(current>=target){current=target;clearInterval(timer)}el.textContent=target===10?current+'+':target===300?current+'+':current},24)})}})},{threshold:.4});
+    statsObserver.observe(document.querySelector('.stats'));
+
+    const grid=document.getElementById('boothGrid');
+    const rows=['A','B','C','D','E'];
+    const reserved=['A02','A09','B17','C04','C17','D02','D09','E03','E06'];
+    const sold=['B07','C12','D05'];
+    rows.forEach(row=>{for(let i=1;i<=10;i++){const no=row+String(i).padStart(2,'0');const btn=document.createElement('button');btn.textContent=no;let status='available';if(reserved.includes(no))status='reserved';if(sold.includes(no))status='sold';btn.className='booth status-'+status;btn.dataset.no=no;btn.dataset.status=status;btn.onclick=()=>selectBooth(no,status);grid.appendChild(btn)}});
+    function selectBooth(no,status){
+      document.getElementById('boothNo').textContent=no;
+      document.getElementById('zoneText').textContent='Zone '+no[0];
+      const statusText=document.getElementById('statusText');
+      const dot=document.getElementById('statusDot');
+      dot.className='sq '+(status==='available'?'available':status==='reserved'?'reserved':'sold');
+      statusText.textContent=status.toUpperCase();
+      statusText.style.color=status==='available'?'#4caf50':status==='reserved'?'#f2b93b':'#d63a2f';
+      document.querySelector('.booth-detail').scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+  </script>
+</body>
+</html>
